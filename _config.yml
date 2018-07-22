@@ -19,16 +19,16 @@ avatar: https://raw.githubusercontent.com/barryclark/jekyll-now/master/images/je
 footer-links:
   dribbble:
   email: waldonhendricks@gmail.com
-  facebook: https://web.facebook.com/hendricksw
+  facebook: /hendricksw
   flickr:
-  github: waldonhendricks/waldonhendricks.github.io
+  github: /waldonhendricks
   instagram:
-  linkedin: https://www.linkedin.com/in/waldon-hendricks-48799131/
+  linkedin: /in/waldon-hendricks-48799131/
   pinterest:
   rss: # just type anything here for a working RSS icon
   twitter: wallyd007
   stackoverflow: # your stackoverflow profile, e.g. "users/50476/bart-kiers"
-  youtube: # https://www.youtube.com/user/TheWaldon
+  youtube: # /user/TheWaldon
   googleplus: # anything in your profile username that comes after plus.google.com/
 
 
