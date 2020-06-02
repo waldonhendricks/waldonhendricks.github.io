@@ -2,7 +2,7 @@
     /* Insert CSS to style search input */
     var link = document.createElement("link");
     link.setAttribute("rel", "stylesheet");
-    link.setAttribute("href", "https://waldonhendricks.github.io/blackboard_hacks/keele/assessmentStatusKeele/assessmentStatusKeele.css");
+    link.setAttribute("href", "https://waldonhendricks.github.io/blackboard_hacks/cput/assessmentStatusKeele/assessmentStatusKeele.css");
     var head = document.getElementsByTagName("head") [0];
     head.appendChild(link);
     /* Insert Font Awesome for search icon */
