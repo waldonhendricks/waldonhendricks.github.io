@@ -215,58 +215,88 @@
       <section>
         <div class="section-title">Contact</div>
         <div class="contact">
-          <form id="contact-form" method="POST" action="https://formspree.io/f/mwpagjne">
-            <input type="hidden" name="_subject" value="Contact request from personal website">
-            <div style="margin:6px 0"><input type="email" name="email" id="email" placeholder="Your email" required style="width:100%;padding:8px;border:1px solid #ddd;border-radius:4px"></div>
-            <div style="margin:6px 0"><textarea name="message" id="message" placeholder="Your message" required style="width:100%;padding:8px;border:1px solid #ddd;border-radius:4px;min-height:90px"></textarea></div>
-            <div style="display:flex;align-items:center;gap:12px"><button type="submit" style="background:var(--accent);color:#fff;border:none;padding:10px 14px;border-radius:4px">Send</button><span id="form-status" style="color:#333"></span></div>
-          </form>
-        </div>
-      </section>
-    </main>
+         <!-- Contact form (ready to paste into your page). Uses Formspree endpoint: https://formspree.io/f/mwpagjne -->
+<form id="contact-form" action="https://formspree.io/f/mwpagjne" method="POST" novalidate>
+  <!-- Hidden subject for notifications -->
+  <input type="hidden" name="_subject" value="Contact request from personal website">
 
-    <footer style="margin-top:22px;color:#666;font-size:13px">
-      <div>© 2025 Waldon Hendricks</div>
-    </footer>
+  <!-- Honeypot to reduce spam (invisible to users) -->
+  <div style="display:none;">
+    <label>Leave this field empty:
+      <input type="text" name="_gotcha" tabindex="-1" autocomplete="off">
+    </label>
   </div>
 
-  <script>
-  (function () {
-    const form = document.getElementById('contact-form');
-    if (!form) return;
-    const statusEl = document.getElementById('form-status');
+  <label for="email">Your email<span aria-hidden="true"> *</span></label>
+  <input id="email" name="email" type="email" required placeholder="you@example.com" style="width:100%;padding:8px;margin:6px 0;border:1px solid #ddd;border-radius:4px">
 
-    form.addEventListener('submit', async function (e) {
-      e.preventDefault();
-      statusEl.style.color = '#333';
-      statusEl.textContent = 'Sending…';
-      const url = form.action;
+  <label for="message">Your message<span aria-hidden="true"> *</span></label>
+  <textarea id="message" name="message" required placeholder="Write your message here..." style="width:100%;padding:8px;margin:6px 0;border:1px solid #ddd;border-radius:4px;min-height:120px"></textarea>
+
+  <!-- Optional fields (uncomment and edit if you'd like) -->
+  <!-- <label for="subject">Subject</label>
+  <input id="subject" name="subject" type="text" placeholder="Subject" style="width:100%;padding:8px;margin:6px 0;border:1px solid #ddd;border-radius:4px"> -->
+
+  <div style="display:flex;align-items:center;gap:12px;margin-top:8px">
+    <button type="submit" style="background:#1976D2;color:#fff;border:none;padding:10px 14px;border-radius:4px;cursor:pointer">Send</button>
+    <span id="form-status" role="status" aria-live="polite" style="color:#333"></span>
+  </div>
+
+  <noscript>
+    <p style="color:#a00">JavaScript is disabled in your browser. The form will still submit, but you won't see inline confirmation. If the form does not submit, enable JavaScript or contact via email: <a href="mailto:waldonhendricks@gmail.com">waldonhendricks@gmail.com</a>.</p>
+  </noscript>
+</form>
+
+<script>
+(function () {
+  const form = document.getElementById('contact-form');
+  if (!form) return;
+  const statusEl = document.getElementById('form-status');
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    // basic client-side validation (extra to required attributes)
+    const email = form.email.value.trim();
+    const message = form.message.value.trim();
+    if (!email || !message) {
+      statusEl.style.color = 'crimson';
+      statusEl.textContent = 'Please complete required fields.';
+      return;
+    }
+
+    // check honeypot
+    if (form._gotcha && form._gotcha.value) {
+      // likely spam — do nothing (silently fail)
+      return;
+    }
+
+    statusEl.style.color = '#333';
+    statusEl.textContent = 'Sending…';
+
+    try {
       const formData = new FormData(form);
+      const resp = await fetch(form.action, {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: formData
+      });
 
-      try {
-        const resp = await fetch(url, {
-          method: 'POST',
-          headers: { 'Accept': 'application/json' },
-          body: formData
-        });
-
-        if (resp.ok) {
-          statusEl.style.color = 'green';
-          statusEl.textContent = 'Message sent — thank you.';
-          form.reset();
-        } else {
-          const data = await resp.json().catch(() => null);
-          statusEl.style.color = 'crimson';
-          statusEl.textContent = (data && data.error) ? data.error : 'Error sending message.';
-          console.error('Formspree error response:', data);
-        }
-      } catch (err) {
+      if (resp.ok) {
+        statusEl.style.color = 'green';
+        statusEl.textContent = 'Message sent — thank you.';
+        form.reset();
+      } else {
+        const data = await resp.json().catch(() => null);
         statusEl.style.color = 'crimson';
-        statusEl.textContent = 'Network error — try again later.';
-        console.error(err);
+        statusEl.textContent = (data && data.error) ? data.error : 'Error sending message.';
+        console.error('Formspree error response:', data);
       }
-    }, false);
-  })();
-  </script>
-</body>
-</html>
+    } catch (err) {
+      statusEl.style.color = 'crimson';
+      statusEl.textContent = 'Network error — try again later.';
+      console.error(err);
+    }
+  }, false);
+})();
+</script>
