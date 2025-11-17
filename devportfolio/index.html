@@ -9,67 +9,76 @@
     :root{--accent:#1976D2;--bg:#ffffff;--text:#222}
     *{box-sizing:border-box}
     body{font-family:'Lato',system-ui,Segoe UI,Roboto,Arial;line-height:1.5;color:var(--text);background:var(--bg);padding:24px}
-    .sheet{max-width:820px;margin:0 auto;background:#fff;padding:32px;border-radius:6px;box-shadow:0 6px 24px rgba(0,0,0,.08)}
-    header{display:flex;flex-direction:column;gap:8px;margin-bottom:18px}
+    .sheet{max-width:900px;margin:0 auto;background:#fff;padding:32px;border-radius:6px;box-shadow:0 6px 24px rgba(0,0,0,.08)}
+    header{display:flex;gap:18px;align-items:center;margin-bottom:18px}
+    .profile-photo{width:96px;height:96px;border-radius:50%;object-fit:cover;border:3px solid #fff;box-shadow:0 4px 12px rgba(0,0,0,.08)}
+    .header-content{flex:1;min-width:0}
     h1{font-size:28px;margin:0}
-    h2{color:var(--accent);font-size:14px;margin:0;text-transform:uppercase;letter-spacing:.08em}
-    h3{margin:18px 0 6px 0;font-size:16px}
-    .meta{display:flex;flex-wrap:wrap;gap:12px;font-size:14px;color:#444}
+    h2{color:var(--accent);font-size:12px;margin:6px 0 0 0;text-transform:uppercase;letter-spacing:.08em}
+    .meta{display:flex;flex-wrap:wrap;gap:12px;font-size:14px;color:#444;margin-top:8px}
+    .download-resume{display:inline-block;margin-top:10px;padding:8px 12px;border-radius:4px;background:var(--accent);color:#fff;text-decoration:none}
     section{margin-top:18px}
+    .section-title{border-left:4px solid var(--accent);padding-left:10px;margin-bottom:10px;font-weight:700}
     ul{margin:8px 0 0 20px}
-    .two{display:flex;gap:12px}
     .muted{color:#666;font-size:14px}
-    .contact{margin-top:12px}
-    .print-hide{display:inline-block}
-    @media (max-width:720px){.sheet{padding:20px}h1{font-size:24px}}
-    @media print{body{padding:0} .sheet{box-shadow:none;border-radius:0;margin:0} .print-hide{display:none}}
-    .download-resume{display:inline-block;margin-top:8px;padding:8px 12px;border-radius:4px;background:var(--accent);color:#fff;text-decoration:none}
-    .section-title{border-left:4px solid var(--accent);padding-left:10px;margin-bottom:8px}
-    .skill-list{display:flex;flex-wrap:wrap;gap:8px}
+    .skill-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
     .skill-pill{background:#f3f6fb;padding:6px 8px;border-radius:4px;font-size:13px;color:#223}
+    /* Projects grid */
+    .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-top:12px}
+    .project-card{border:1px solid #eef2f6;border-radius:6px;overflow:hidden;background:#fff;display:flex;flex-direction:column;box-shadow:0 4px 12px rgba(0,0,0,.04);min-height:120px;padding:0}
+    .project-body{padding:14px;flex:1;display:flex;flex-direction:column}
+    .project-title{font-weight:700;margin:0 0 6px 0;font-size:15px}
+    .project-desc{flex:1;margin:0 0 10px 0;color:#444;font-size:14px}
+    .project-link{align-self:flex-start;padding:8px 10px;background:var(--accent);color:#fff;border-radius:4px;text-decoration:none;font-size:13px}
+    @media (max-width:720px){.sheet{padding:20px}h1{font-size:24px}.profile-photo{width:78px;height:78px}}
+    @media print{body{padding:0} .sheet{box-shadow:none;border-radius:0;margin:0} .download-resume{display:none}}
   </style>
 </head>
 <body>
   <div class="sheet">
     <header>
-      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
-        <div>
-          <h1>Waldon Hendricks</h1>
-          <div class="meta">IT Lecturer — Faculty of Informatics &amp; Design | Cape Peninsula University of Technology</div>
-          <a class="download-resume" href="https://enquiries.cput.ac.za/Docs/resume.pdf" download="resume.pdf">Download PDF resume</a>
+      <img class="profile-photo" src="https://avatars.githubusercontent.com/u/8423513?v=4" alt="Waldon Hendricks profile photo">
+      <div class="header-content">
+        <h1>Waldon Hendricks</h1>
+        <div class="meta">
+          <div>IT Lecturer — Faculty of Informatics &amp; Design</div>
+          <div>|</div>
+          <div>Cape Peninsula University of Technology</div>
         </div>
-        <div style="text-align:right">
+        <a class="download-resume" href="https://enquiries.cput.ac.za/Docs/resume.pdf" download="resume.pdf">Download PDF resume</a>
+        <div class="meta" style="margin-top:8px">
           <div class="muted">Email: <a href="mailto:waldonhendricks@gmail.com">waldonhendricks@gmail.com</a></div>
           <div class="muted">GitHub: <a href="https://github.com/waldonhendricks" target="_blank">waldonhendricks</a></div>
-          <div class="muted">LinkedIn: <a href="https://www.linkedin.com/in/waldon-hendricks-48799131/" target="_blank">waldon-hendricks-48799131</a></div>
+          <div class="muted">LinkedIn: <a href="https://www.linkedin.com/in/waldonhendricks/" target="_blank">waldonhendricks</a></div>
         </div>
-      </div>
-
-      <div style="margin-top:8px;color:#333">
-        <h2>Executive Summary</h2>
-        <p style="margin:8px 0 0 0">I am an experienced academic in the Faculty of Informatics &amp; Design with a strong track record in teaching, curriculum innovation, digital transformation and faculty-level IT coordination. My expertise spans cloud computing, distributed systems, DevOps, robotics, academic technologies and industry-accredited learning pathways. I have extensive experience managing CRIMS within the department, participating in ICTS governance structures, driving digital adoption across the curriculum and supporting staff development in cloud and open-source platforms. I bring academic leadership, research output, postgraduate supervision experience and an established record of strengthening industry partnerships that enhance student employability.</p>
       </div>
     </header>
 
     <main>
       <section>
-        <div class="section-title"><strong>Professional Experience</strong></div>
+        <div class="section-title">Executive Summary</div>
+        <p>I am an experienced academic in the Faculty of Informatics &amp; Design with a strong track record in teaching, curriculum innovation, digital transformation and faculty-level IT coordination. My expertise spans cloud computing, distributed systems, DevOps, robotics, academic technologies and industry-accredited learning pathways. I have extensive experience managing CRIMS within the department, participating in ICTS governance structures, driving digital adoption across the curriculum and supporting staff development in cloud and open-source platforms. I bring academic leadership, research output, postgraduate supervision experience and an established record of strengthening industry partnerships that enhance student employability.</p>
+      </section>
+
+      <section>
+        <div class="section-title">Professional Experience</div>
         <h3>Lecturer | Faculty of Informatics &amp; Design | Cape Peninsula University of Technology</h3>
-        <div class="muted">Years of Service: ____________</div>
-        <h4 style="margin:10px 0 6px 0">Teaching &amp; Learning</h4>
+        <div class="muted">Years of Service: 14 years (2011–present)</div>
+
+        <h4 style="margin-top:10px">Teaching &amp; Learning</h4>
         <ul>
           <li>Deliver undergraduate and postgraduate modules in Python, Distributed Systems, Kubernetes, Networking and Cloud Computing.</li>
           <li>Integrate hands-on learning technologies such as LEGO Robotics, Raspberry Pi and Arduino into the curriculum.</li>
           <li>Design and revise curriculum to align with industry requirements and 4IR technologies.</li>
         </ul>
 
-        <h4 style="margin:10px 0 6px 0">Research &amp; Supervision</h4>
+        <h4 style="margin-top:10px">Research &amp; Supervision</h4>
         <ul>
           <li>Publish research in distributed systems, cloud computing, Kubernetes and software engineering.</li>
           <li>Co-supervise Master’s and Doctoral students and supervise postgraduate research and capstone projects.</li>
         </ul>
 
-        <h4 style="margin:10px 0 6px 0">Academic Leadership &amp; Quality Assurance</h4>
+        <h4 style="margin-top:10px">Academic Leadership &amp; Quality Assurance</h4>
         <ul>
           <li>Former Curriculum Officer (First-Year Academy), driving curriculum innovation and academic development.</li>
           <li>Mentor first-year academic staff in curriculum delivery and technology-enabled teaching.</li>
@@ -78,14 +87,14 @@
       </section>
 
       <section>
-        <div class="section-title"><strong>Faculty &amp; Institutional IT Leadership</strong></div>
+        <div class="section-title">Faculty &amp; Institutional IT Leadership</div>
         <h4>Information Systems Management</h4>
         <ul>
           <li>Manage the IT Department's CRIMS study query system, ensuring data accuracy and operational efficiency.</li>
           <li>Serve on the Hosted Services Forum ICTS, providing faculty-level feedback on system usage, disruptions and improvement needs.</li>
         </ul>
 
-        <h4>IT Strategy &amp; Digital Transformation</h4>
+        <h4 style="margin-top:10px">IT Strategy &amp; Digital Transformation</h4>
         <ul>
           <li>Lead integration of cloud computing, DevOps, Linux and distributed computing technologies across curricula.</li>
           <li>Coordinate adoption of AWS Learner Labs, GitHub Classroom, JetBrains IDEs, Red Hat Academy and Huawei ICT Academy tools.</li>
@@ -94,7 +103,7 @@
       </section>
 
       <section>
-        <div class="section-title"><strong>Industry &amp; Partnership Engagement</strong></div>
+        <div class="section-title">Industry &amp; Partnership Engagement</div>
         <ul>
           <li>Huawei ICT Academy Support Centre Partner Manager – facilitate regional academy collaboration, training, and certification adoption.</li>
           <li>Huawei ICT Academy Administrator – manage lecturer enablement and student certification pathways.</li>
@@ -106,7 +115,30 @@
       </section>
 
       <section>
-        <div class="section-title"><strong>Community Engagement &amp; External Moderation</strong></div>
+        <div class="section-title">Projects</div>
+        <p class="muted">Selected projects and student-facing systems.</p>
+
+        <div class="projects-grid">
+          <article class="project-card">
+            <div class="project-body">
+              <h4 class="project-title">FID CRIMS (Customer Relationship Information Management System)</h4>
+              <p class="project-desc">A support platform for technical and academic queries within the Informatics &amp; Design faculty — tickets, history and optional live support.</p>
+              <a class="project-link" href="https://enquiries.cput.ac.za/" target="_blank">View Project</a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-body">
+              <h4 class="project-title">Cloud &amp; Lab Integrations</h4>
+              <p class="project-desc">Integrations with AWS Learner Labs, GitHub Classroom and enterprise lab environments to deliver hands-on curriculum experiences.</p>
+              <a class="project-link" href="https://github.com/waldonhendricks" target="_blank">More on GitHub</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-title">Community Engagement &amp; External Moderation</div>
         <ul>
           <li>Participate in CPUT’s Digital Literacy Project.</li>
           <li>Contribute to STEM outreach in high schools.</li>
@@ -116,14 +148,25 @@
       </section>
 
       <section>
-        <div class="section-title"><strong>Education</strong></div>
-        <p><strong>Doctoral Qualification (IT-related field)</strong><br>Institution: ____________________ | Year: ____________________</p>
-        <p><strong>Master’s Degree (IT-related field)</strong><br>Institution: ____________________ | Year: ____________________</p>
-        <p><strong>Bachelor’s Degree</strong><br>Institution: ____________________ | Year: ____________________</p>
+        <div class="section-title">Education</div>
+        <p><strong>Doctor of ICT (Information &amp; Communication Technology)</strong><br>Cape Peninsula University of Technology — 2020–2024 (Awarded 12 Dec 2024)</p>
+        <p><strong>MTech: Information Technology</strong><br>Cape Peninsula University of Technology — 2015–2019 (Awarded 07 Dec 2019)</p>
+        <p><strong>Bachelor’s degree in Information Technology (Communication Networks)</strong><br>Cape Peninsula University of Technology — 2013–2014 (Awarded 01 Dec 2014)</p>
+        <p><strong>National Diploma in Information Technology (Communication Networks)</strong><br>Cape Peninsula University of Technology — 2004–2006 (Awarded 01 Dec 2006)</p>
       </section>
 
       <section>
-        <div class="section-title"><strong>Technical Skills</strong></div>
+        <div class="section-title">Research Output</div>
+        <ul>
+          <li>Hendricks, W., 2019. Review of NoSQL Data Stores: Using a reactive three-tier application for software developers to achieve a high availability application design architecture. 2019 Open Innovations (OI), pp.71–77.</li>
+          <li>Hendricks, W. &amp; Kabaso, B., 2023. A Framework for Selecting Optimal Network Protocols for IoT Technologies in Image and Vision-based Applications. International Conference on Artificial Intelligence and its Applications, pp.6–14.</li>
+          <li>Hendricks, W. &amp; Kabaso, B., 2023. Challenges and Solutions in Integrating Narrowband IoT with Edge Computing: Resource Constraints, Security, Latency, and IDS Deployment. International Conference on Advanced Computing and Intelligent Technologies, pp.119–134. (Springer Nature Singapore)</li>
+          <li>Hendricks, W. &amp; Kabaso, B., 2024. Evaluating Signal Quality and System Performance in NB-IoT Communications: An Empirical Analysis Using the SIM7020 Module. Journal of Telecommunications and the Digital Economy, 12(2). https://doi.org/10.18080/jtde.v12n2.955</li>
+        </ul>
+      </section>
+
+      <section>
+        <div class="section-title">Technical Skills</div>
         <div class="skill-list">
           <div class="skill-pill">AWS</div>
           <div class="skill-pill">Huawei Cloud</div>
@@ -139,9 +182,12 @@
           <div class="skill-pill">LEGO Mindstorms</div>
           <div class="skill-pill">Raspberry Pi</div>
           <div class="skill-pill">Arduino</div>
+          <div class="skill-pill">C++</div>
         </div>
+      </section>
 
-        <div style="margin-top:12px" class="section-title"><strong>Competencies</strong></div>
+      <section>
+        <div class="section-title">Competencies</div>
         <ul>
           <li>Academic leadership &amp; staff development</li>
           <li>IT systems strategy &amp; operational coordination</li>
@@ -158,7 +204,16 @@
       </section>
 
       <section>
-        <div class="section-title"><strong>Contact</strong></div>
+        <div class="section-title">Community Responsiveness</div>
+        <ul>
+          <li>Atlantis Special Economic Zone STEAM programme — taught programming, physical computing, robotics and AI to Grade 8 learners using LEGO Education (2024).</li>
+          <li>Digital Literacy Project with CPUT &amp; Cofimvaba Secondary — developed digital literacy content and Moodle LMS for Grade 12 learners (BANKSETA Skills for the Future, 2023).</li>
+          <li>Designed SCORM content for CET college digital learning on Moodle (2022–2023).</li>
+        </ul>
+      </section>
+
+      <section>
+        <div class="section-title">Contact</div>
         <div class="contact">
           <form method="POST" action="https://formspree.io/waldonhendricks@gmail.com">
             <input type="hidden" name="_subject" value="Contact request from personal website">
@@ -168,7 +223,6 @@
           </form>
         </div>
       </section>
-
     </main>
 
     <footer style="margin-top:22px;color:#666;font-size:13px">
