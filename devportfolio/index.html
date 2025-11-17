@@ -215,11 +215,11 @@
       <section>
         <div class="section-title">Contact</div>
         <div class="contact">
-          <form method="POST" action="https://formspree.io/waldonhendricks@gmail.com">
+          <form id="contact-form" method="POST" action="https://formspree.io/f/mwpagjne">
             <input type="hidden" name="_subject" value="Contact request from personal website">
-            <div style="margin:6px 0"><input type="email" name="_replyto" placeholder="Your email" required style="width:100%;padding:8px;border:1px solid #ddd;border-radius:4px"></div>
-            <div style="margin:6px 0"><textarea name="message" placeholder="Your message" required style="width:100%;padding:8px;border:1px solid #ddd;border-radius:4px;min-height:90px"></textarea></div>
-            <div><button type="submit" style="background:var(--accent);color:#fff;border:none;padding:10px 14px;border-radius:4px">Send</button></div>
+            <div style="margin:6px 0"><input type="email" name="email" id="email" placeholder="Your email" required style="width:100%;padding:8px;border:1px solid #ddd;border-radius:4px"></div>
+            <div style="margin:6px 0"><textarea name="message" id="message" placeholder="Your message" required style="width:100%;padding:8px;border:1px solid #ddd;border-radius:4px;min-height:90px"></textarea></div>
+            <div style="display:flex;align-items:center;gap:12px"><button type="submit" style="background:var(--accent);color:#fff;border:none;padding:10px 14px;border-radius:4px">Send</button><span id="form-status" style="color:#333"></span></div>
           </form>
         </div>
       </section>
@@ -229,5 +229,44 @@
       <div>© 2025 Waldon Hendricks</div>
     </footer>
   </div>
+
+  <script>
+  (function () {
+    const form = document.getElementById('contact-form');
+    if (!form) return;
+    const statusEl = document.getElementById('form-status');
+
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      statusEl.style.color = '#333';
+      statusEl.textContent = 'Sending…';
+      const url = form.action;
+      const formData = new FormData(form);
+
+      try {
+        const resp = await fetch(url, {
+          method: 'POST',
+          headers: { 'Accept': 'application/json' },
+          body: formData
+        });
+
+        if (resp.ok) {
+          statusEl.style.color = 'green';
+          statusEl.textContent = 'Message sent — thank you.';
+          form.reset();
+        } else {
+          const data = await resp.json().catch(() => null);
+          statusEl.style.color = 'crimson';
+          statusEl.textContent = (data && data.error) ? data.error : 'Error sending message.';
+          console.error('Formspree error response:', data);
+        }
+      } catch (err) {
+        statusEl.style.color = 'crimson';
+        statusEl.textContent = 'Network error — try again later.';
+        console.error(err);
+      }
+    }, false);
+  })();
+  </script>
 </body>
 </html>
